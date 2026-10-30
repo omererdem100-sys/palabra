@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+:root {color-scheme:light;}
+.stApp {background:#fffaf0;color:#30221f;font-family:'DM Sans',sans-serif;}
+/* Streamlit chrome. Keep the sidebar controls outside the header usable. */
+#MainMenu, header[data-testid="stHeader"], footer,
+[data-testid="stAppDeployButton"], [data-testid="stToolbar"] {display:none!important;}
+/* With the stock header hidden, keep navigation visible even if Streamlit's
+   internal sidebar state is collapsed. Stack it above content on small screens. */
+[data-testid="stSidebar"] {background:#991f2f;color:#fff7e1;border-right:6px solid #f5c344;position:relative!important;width:300px!important;min-width:300px!important;max-width:300px!important;transform:none!important;}
+[data-testid="stSidebarHeader"] {display:none!important;}
+[data-testid="stSidebar"] * {color:#fff7e1;}
+/* Hide only the painted circles, preserving native radio inputs for keyboards. */
+[data-testid="stSidebar"] [data-testid="stRadioOption"] > div > div:first-child:not([data-testid="stMarkdownContainer"]),
+[data-testid="stSidebar"] label[data-baseweb="radio"] > div:first-child {display:none!important;}
+[data-testid="stSidebar"] [role="radiogroup"] {width:100%;gap:5px;}
+[data-testid="stSidebar"] .st-key-navigation {width:100%!important;}
+[data-testid="stSidebar"] [role="radiogroup"] > div {width:100%;}
+[data-testid="stSidebar"] .stRadio label[data-testid="stRadioOption"],
+[data-testid="stSidebar"] .stRadio label[data-baseweb="radio"] {
+    width:100%;box-sizing:border-box;margin:0;padding:11px 15px;border-radius:10px;
+    border:1px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;
+}
+[data-testid="stSidebar"] .stRadio label:hover {background:rgba(255,255,255,.10);}
+[data-testid="stSidebar"] .stRadio label[data-selected="true"],
+[data-testid="stSidebar"] .stRadio label:has(input:checked) {
+    background:#be4753;border-color:#eaa373;box-shadow:inset 3px 0 #ffd36c;
+}
+[data-testid="stSidebar"] .stRadio label:has(input:focus-visible) {outline:3px solid #ffd36c;outline-offset:2px;}
+[data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(4) {margin-top:10px;border-top:1px solid #ffffff25;padding-top:10px;}
+[data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(n+4):nth-child(-n+6) label {padding-left:27px;}
+.block-container {max-width:1150px;padding-top:1.5rem;padding-bottom:2rem;}
+.brand {font-family:'Outfit',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;margin:15px 0 0;}
+.brand span {color:#ffd362!important;}
+.eyebrow {font-size:11px;letter-spacing:2.2px;font-weight:700;}
+.topline {font-size:11px;letter-spacing:2px;color:#a42836;font-weight:700;border-bottom:1px solid #eadfce;padding-bottom:12px;margin-bottom:12px;}
+.topline span {float:right;color:#8a7262;}
+h1,h2,h3 {font-family:'Outfit',sans-serif!important;}
+h1 {font-size:clamp(2rem,4vw,3.4rem)!important;font-weight:700!important;letter-spacing:-1.8px;line-height:1.1!important;}
+.subtitle {color:#806b5e;font-size:16px;}
+.xp-card {background:#ffe5a0;border:1px solid #f5cf76;border-radius:20px;padding:18px 22px;transform:rotate(2deg);}
+.xp-card span {display:block;font-size:10px;letter-spacing:1.8px;font-weight:700;color:#8b5724;}
+.xp-card strong {display:block;font-family:'Outfit',sans-serif;font-size:38px;color:#912332;}
+.xp-card small {font-size:16px;}
+[data-testid="stMetric"] {background:#fffdf8;border:1px solid #eddfcc;border-radius:16px;padding:14px 20px;}
+[data-testid="stMetricLabel"] {color:#826f60;}
+[data-testid="stMetricValue"] {font-family:'Outfit',sans-serif;font-size:28px;color:#952638;}
+.quiz-card {position:relative;text-align:center;background:linear-gradient(115deg,#ffe6a1,#fff0c9);border:1px solid #f0cf83;border-radius:26px;padding:24px 20px 20px;margin:0 0 8px;overflow:hidden;animation:arrive .45s ease-out;}
+.quiz-card:after {content:'☀';position:absolute;right:18px;top:2px;font-size:120px;color:#edb52b;opacity:.16;animation:turn 50s linear infinite;pointer-events:none;}
+.quiz-card .eyebrow {color:#995c23;}
+.quiz-card h2 {font-size:clamp(2.5rem,5vw,3.6rem);color:#972337;margin:8px 0 4px;letter-spacing:-1px;}
+.quiz-card p {color:#866336;font-size:14px;margin-bottom:0;}
+.quiz-card.sentence h2 {font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.35;}
+.quiz-card.form h2 {font-size:clamp(1.8rem,3.5vw,2.8rem);}
+hr {margin:.7rem 0!important;}
+div.stButton > button {min-height:65px;border:1px solid #e7d3b8;background:#fffdf8;border-radius:15px;color:#382a24;font-size:1.05rem;font-weight:500;box-shadow:0 3px 9px #70451b0d;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background-color .2s ease;}
+div.stButton > button p {font-size:1.05rem;font-weight:500;}
+div.stButton > button:hover {border-color:#e6a145;color:#62401d;transform:translateY(-2px);box-shadow:0 8px 20px #94551e20;}
+div.stButton > button:active {transform:translateY(0);box-shadow:0 2px 5px #70451b15;}
+.stButton>button:focus-visible {outline:3px solid #b67c05;outline-offset:2px;}
+.stButton>button[kind="primary"] {background:#a52637;color:white;border-color:#a52637;}
+.stButton>button[kind="primary"]:hover {background:#922032;color:white;border-color:#e6a145;}
+.answer {min-height:65px;padding:19px;border-radius:15px;margin-bottom:16px;border:1px solid #e4d6c4;font-size:1.05rem;font-weight:500;background:#fffdf8;}
+.answer.correct {background:#e2f3e6;color:#176538;border:2px solid #368453;}
+.answer.wrong {background:#ffe5e4;color:#a12332;border:2px solid #b8313f;}
+.answer.neutral {color:#897c6d;}
+.answer {position:relative;isolation:isolate;overflow:hidden;}
+.answer span {position:relative;z-index:1;}
+.answer.correct {--fill:#e2f3e6;--ink:#176538;--edge:#368453;}
+.answer.wrong {--fill:#ffe5e4;--ink:#a12332;--edge:#b8313f;}
+.answer.reveal.correct,.answer.reveal.wrong {background:#fffdf8;color:#382a24;border-color:#e4d6c4;animation:answer-ink .8s ease-out forwards;}
+.answer.reveal.correct:before,.answer.reveal.wrong:before {content:'';position:absolute;inset:0;background:var(--fill);transform:scaleX(0);transform-origin:left;animation:answer-fill .8s cubic-bezier(.22,.61,.36,1) forwards;}
+.example-card {border-left:4px solid #eabb43;background:#fff8e6;padding:14px 20px;border-radius:0 14px 14px 0;margin:10px 0;}
+.example-card p {margin:4px 0;}
+.example-card p:first-child {font-weight:700;color:#8f2634;font-size:19px;}
+@keyframes answer-fill {from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes answer-ink {0%,70%{color:#382a24;border-color:#e4d6c4}100%{color:var(--ink);border-color:var(--edge)}}
+@media(prefers-reduced-motion:reduce) {.answer.reveal.correct,.answer.reveal.wrong {background:var(--fill);color:var(--ink);border-color:var(--edge);}.answer.reveal:before {transform:scaleX(1)!important;}}
+.footer-note {text-align:center;margin-top:28px;color:#9a8169;font-size:11px;letter-spacing:2px;}
+@keyframes arrive {from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes turn {to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce) {*,*:before,*:after {animation:none!important;transition:none!important;}}
+@media(max-width:640px) {.topline span{display:none}.block-container{padding:1.5rem 1rem}.xp-card{transform:none}h1{letter-spacing:-1px}}
+@media(max-width:768px) {
+    [data-testid="stAppViewContainer"] {flex-direction:column;overflow:auto;}
+    [data-testid="stSidebar"] {width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;border-right:0;border-bottom:5px solid #f5c344;}
+    [data-testid="stSidebarContent"] {height:auto!important;overflow:visible!important;}
+    [data-testid="stSidebar"] [role="radiogroup"] {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+    [data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(n) {margin-top:0;border-top:0;padding-top:0;}
+    [data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(n) label {padding-left:15px;}
+    [data-testid="stMain"] {overflow:visible;}
+}
