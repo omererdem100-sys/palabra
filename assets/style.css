@@ -4,8 +4,8 @@
 /* Streamlit chrome. Keep the sidebar controls outside the header usable. */
 #MainMenu, header[data-testid="stHeader"], footer,
 [data-testid="stAppDeployButton"], [data-testid="stToolbar"] {display:none!important;}
-/* With the stock header hidden, keep navigation visible even if Streamlit's
-   internal sidebar state is collapsed. Stack it above content on small screens. */
+/* Desktop navigation stays visible. Mobile restores Streamlit's native drawer
+   and its open/close controls in the media query below. */
 [data-testid="stSidebar"] {background:#991f2f;color:#fff7e1;border-right:6px solid #f5c344;position:relative!important;width:300px!important;min-width:300px!important;max-width:300px!important;transform:none!important;}
 [data-testid="stSidebarHeader"] {display:none!important;}
 [data-testid="stSidebar"] * {color:#fff7e1;}
@@ -81,11 +81,29 @@ div.stButton > button:active {transform:translateY(0);box-shadow:0 2px 5px #7045
 @media(prefers-reduced-motion:reduce) {*,*:before,*:after {animation:none!important;transition:none!important;}}
 @media(max-width:640px) {.topline span{display:none}.block-container{padding:1.5rem 1rem}.xp-card{transform:none}h1{letter-spacing:-1px}}
 @media(max-width:768px) {
-    [data-testid="stAppViewContainer"] {flex-direction:column;overflow:auto;}
-    [data-testid="stSidebar"] {width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;border-right:0;border-bottom:5px solid #f5c344;}
-    [data-testid="stSidebarContent"] {height:auto!important;overflow:visible!important;}
-    [data-testid="stSidebar"] [role="radiogroup"] {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
-    [data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(n) {margin-top:0;border-top:0;padding-top:0;}
-    [data-testid="stSidebar"] [role="radiogroup"] > div:nth-child(n) label {padding-left:15px;}
-    [data-testid="stMain"] {overflow:visible;}
+    /* Keep just the native menu opener; Deploy and MainMenu remain hidden. */
+    header[data-testid="stHeader"] {display:block!important;height:3.5rem;background:#fffaf0;}
+    [data-testid="stToolbar"] {display:flex!important;}
+    [data-testid="stToolbarActions"] {display:none!important;}
+    [data-testid="stExpandSidebarButton"] {min-width:90px;min-height:44px;margin:5px 12px;padding:6px 12px;border:1px solid #e7d3b8;border-radius:10px;background:#fff1cf;color:#991f2f;}
+    [data-testid="stExpandSidebarButton"]::after {content:'Menu';font-size:.9rem;font-weight:600;margin-left:6px;}
+    [data-testid="stSidebar"] {
+        position:fixed!important;inset:0 auto 0 0!important;
+        width:min(320px,90vw)!important;min-width:0!important;max-width:min(320px,90vw)!important;
+        height:100vh!important;height:100dvh!important;max-height:100dvh!important;
+        border-right:4px solid #f5c344;transition:transform .2s ease;
+    }
+    [data-testid="stSidebar"][data-collapsed="true"] {transform:translateX(-100%)!important;pointer-events:none;}
+    [data-testid="stSidebar"][data-collapsed="false"] {transform:translateX(0)!important;pointer-events:auto;}
+    [data-testid="stSidebarHeader"] {display:flex!important;min-height:3.5rem;}
+    [data-testid="stSidebar"] button[aria-label="Collapse sidebar"] {min-width:86px;min-height:44px;padding:6px 10px;border:1px solid #ffffff55;border-radius:10px;background:#ffffff12;}
+    [data-testid="stSidebar"] button[aria-label="Collapse sidebar"]::after {content:'Close';font-size:.85rem;font-weight:600;margin-left:5px;}
+    [data-testid="stSidebarContent"] {height:100%!important;overflow-y:auto!important;overscroll-behavior:contain;}
+    .block-container {padding-top:4.25rem;}
+    /* Keep the three small counters on one row instead of filling the phone. */
+    [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {flex-wrap:nowrap!important;gap:8px;}
+    [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"] {min-width:0!important;flex:1 1 0!important;}
+    [data-testid="stMetric"] {padding:10px 8px;border-radius:12px;}
+    [data-testid="stMetricLabel"] p {font-size:.75rem;}
+    [data-testid="stMetricValue"] {font-size:23px;}
 }
