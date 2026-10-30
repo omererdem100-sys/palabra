@@ -1,5 +1,7 @@
 # ¡Palabra!
 
+**Live demo:** https://palabra.streamlit.app
+
 A Spanish → English vocabulary practice app made with Python and Streamlit, based on seven handwritten Spanish–Turkish vocabulary photos. Warm Spain-inspired red and gold, gentle animation, responsive layouts, and reduced-motion support.
 
 ## Run locally
